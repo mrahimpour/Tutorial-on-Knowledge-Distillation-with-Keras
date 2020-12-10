@@ -7,6 +7,11 @@ Knowledge distillation refers to any type of training which transfers knowledge 
 However, small values of teacher's class probabilities have only a small contribution to the cross-entropy function. While these small values can represent valuable information about the similarity structure in the data, they will have limited impact on the training of the student network. To overcome this disadvantage, Be and Caruana [3] proposed to use logit values as targets instead of the final prediction values of the teacher model. Logit values are defined as the pre-softmax activations and therefore contain logarithmic relationship between prediction probabilities. 
 Instead of using logit values, Hinton et al. [2] proposed the concept of temperature to soften the target values of the teacher and to provide a better representation of smaller probabilities in the output values. In addition to optimizing the student model with the ground truth labels, their proposed objective function penalizes the student model based on the softened version of teacher output as follows: 
 
+```math
+SE = \frac{\sigma}{\sqrt{n}}
+```
+
+
 \begin{equation}
     L_{KD} = (1-\alpha)H(y, y^{S})+\alpha T^{2}H(\sigma(z^{T}/T), \sigma(z^{S}/T))
     \label{eq:1}
