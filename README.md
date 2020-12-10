@@ -9,7 +9,7 @@ Instead of using logit values, Hinton et al. [2] proposed the concept of tempera
 
 ![CodeCogsEqn](https://user-images.githubusercontent.com/41435220/101779817-07134000-3af6-11eb-8afd-dae7d28a69d7.gif)
 
-Where $y^{S}$ is the prediction of student model, $y$ is the label representing the ground truth and H is the cross-entropy function. $z^{T}$ and $z^{S}$ refer to the logit values produced by teacher and student model respectively while $T$ is the temperature parameter and $\sigma$ is the softmax function.
+Where ![CodeCogsEqn](https://user-images.githubusercontent.com/41435220/101780336-b3edbd00-3af6-11eb-99ac-5a1e4df317b8.gif) is the prediction of student model,  is the label representing the ground truth and H is the cross-entropy function. $z^{T}$ and $z^{S}$ refer to the logit values produced by teacher and student model respectively while $T$ is the temperature parameter and $\sigma$ is the softmax function.
 
 
 ![image](https://user-images.githubusercontent.com/41435220/100928868-150a0500-34e7-11eb-92b4-f571634048e4.png)
