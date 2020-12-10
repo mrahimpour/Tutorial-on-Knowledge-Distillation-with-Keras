@@ -12,7 +12,6 @@ Instead of using logit values, Hinton et al. [2] proposed the concept of tempera
 Where ![CodeCogsEqn](https://user-images.githubusercontent.com/41435220/101780336-b3edbd00-3af6-11eb-99ac-5a1e4df317b8.gif) is the prediction of student model, ![CodeCogsEqn](https://user-images.githubusercontent.com/41435220/101780503-e8fa0f80-3af6-11eb-8398-4a67f19c4a81.gif) is the label representing the ground truth and H is the cross-entropy function. ![CodeCogsEqn](https://user-images.githubusercontent.com/41435220/101780662-18a91780-3af7-11eb-9c25-adbbde068a3f.gif) and $z^{S}$ refer to the logit values produced by teacher and student model respectively while $T$ is the temperature parameter and $\sigma$ is the softmax function.
 
 
-![image](https://user-images.githubusercontent.com/41435220/100928868-150a0500-34e7-11eb-92b4-f571634048e4.png)
 
 [1] Bucilua, C., Caruana, R., Niculescu-Mizil, A.: Model compression. In: Proceedingsof the 12th ACM SIGKDD international conference on Knowledge discovery anddata mining. pp. 535–541 (2006)
 
