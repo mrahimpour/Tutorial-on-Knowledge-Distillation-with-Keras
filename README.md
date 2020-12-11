@@ -60,11 +60,8 @@ Where KD is defined as:
     def KD(y_true, y_pred):
          
       d = K.int_shape(y_pred)[-1]
-         
       ld = y_pred[...,:K.cast(d/2, 'int32')]
-        
-      rd = y_pred[...,K.cast(d/2, 'int32'):]
-        
+      rd = y_pred[...,K.cast(d/2, 'int32'):] 
       kd_loss = ((0.75)*(5*5))*loss.binary_crossentropy(ld, rd)
 
       return kd_loss
