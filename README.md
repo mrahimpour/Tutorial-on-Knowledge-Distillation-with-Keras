@@ -32,10 +32,12 @@ In order to setup a “Teacher-Student” framework, we need to create two separ
 3. Train a student from the scratch as a baseline model for comparison
 
 **Train a teacher model:**
+
 Initially, we create a U-Net as a teacher model. Any CNN model can be used to define the models.
-teacher_model = create_unet_like_model()
-teacher.compile()
-teacher.fit()
+
+    teacher_model = create_unet_like_model()
+    teacher.compile()
+    teacher.fit()
 
 **Preparing the dataset:**
 
@@ -87,7 +89,7 @@ Where KD is defined as:
 
 
 # Acknowledgements
-This project has received funding from the European Union’s Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie grant agreement No 764458 (https://www.hybrid2020.eu/home.html).
+This project has received funding from the European Union’s Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie grant agreement No 764458 (https://www.hybrid2020.eu/).
 
 
 # References:
