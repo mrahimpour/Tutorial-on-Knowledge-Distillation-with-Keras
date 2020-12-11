@@ -31,7 +31,25 @@ In order to setup a “Teacher-Student” framework, we need to create two separ
   
 3. Train a student from the scratch as a baseline model for comparison
 
-**Train a teacher model**
+**Train a teacher model:**
+Initially, we create a U-Net as a teacher model. Any CNN model can be used to define the models.
+teacher_model = create_unet_like_model()
+teacher.compile()
+teacher.fit()
+
+**Preparing the dataset:**
+The data needs to be divided into training and testing datasets, then they should be normalized. 
+
+
+**Create the student model**
+student_model = create_unet_like_model()
+student.compile()
+student.fit()
+
+**Define the KD Loss**
+The distillation loss function is a weighted combination of cross-entropy loss between the prediction of student model and groun truth and the cross-entopy loss between the softened output of the student model and teacher model. 
+
+
 
 
 
@@ -43,3 +61,7 @@ In order to setup a “Teacher-Student” framework, we need to create two separ
 [3]  Ba, J., Caruana, R.: Do deep nets really need to be deep? In: Advances in neuralinformation processing systems. pp. 2654–2662 (2014)
 
 Gupta, S., Hoffman, J., Malik, J.: Cross modal distillation for supervision transfer.In: Proceedings of the IEEE conference on computer vision and pattern recognition.pp. 2827–2836 (2016)
+
+
+# Acknowledgements
+This project has received funding from the European Union’s Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie grant agreement No 764458 ([a link] https://www.hybrid2020.eu/home.html.
