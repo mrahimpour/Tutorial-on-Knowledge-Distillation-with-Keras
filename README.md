@@ -57,17 +57,18 @@ The data needs to be divided into training and testing datasets, then they shoul
 
 The distillation loss function is a weighted combination of soft dice loss between the prediction of student model ('output_student') and ground truth and the cross-entopy loss between the softened output of student model ('soft_preds') and teacher model. The loss fuunction for the distillation framework is defined as a dictionary as follows:
 
-    loss_function = {'output_student':soft_dice,
-                    'soft_preds':KD}
+    loss_function = {'output_student':soft_dice, 'soft_preds':KD}
                 
 Where KD is defined as:                
 
+    import keras.backend as K
+    
     def KD(y_true, y_pred):
          
       d = K.int_shape(y_pred)[-1]
       ld = y_pred[...,:K.cast(d/2, 'int32')]
       rd = y_pred[...,K.cast(d/2, 'int32'):] 
-      kd_loss = ((0.75)*(5*5))*loss.binary_crossentropy(ld, rd)
+      kd_loss = ((![CodeCogsEqn](https://user-images.githubusercontent.com/41435220/101928455-e3272b80-3bd5-11eb-8f6d-9c881f0d90c1.gif))*(T*T))*loss.binary_crossentropy(ld, rd)
 
       return kd_loss
         
