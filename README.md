@@ -15,7 +15,7 @@ Where ![CodeCogsEqn](https://user-images.githubusercontent.com/41435220/10178033
 
 
 # Implementation:
-In order to setup a “Teacher-Student” framework, we need to create two separate models for teacher and student models. A CNN with any arbitrary architecture can be used as the teacher and student model. It is contrary to the transfer learning approach where both models must have the same architecture to be able to copy the weights of the pre-trained model to the new model. The following steps are required to implement the knowledge distillation:
+In order to setup a “Teacher-Student” framework, we need to create two separate CNNs for teacher and student models. A CNN with any arbitrary architecture can be used as the teacher and student models. It is contrary to the transfer learning approach where both models must have the same architecture to be able to copy the weights of the pre-trained model to the new model. The following steps are required to implement the knowledge distillation:
 
 1. Train a teacher model
 2. Create a student model and train it by knowledge distillation (KD) loss 
@@ -26,11 +26,9 @@ In order to setup a “Teacher-Student” framework, we need to create two separ
    
    2.3. Define the KD loss function
   
-   2.4. Compile the student model
+   2.4. Compile and train the student-teacher model
   
-   2.5. Train the distilation setting
-  
-   2.6. Evaluate the student model on the test dataset
+   2.5. Evaluate the student model on the test dataset
   
 3. Train a student from the scratch as a baseline model for comparison
 
@@ -39,19 +37,28 @@ In order to setup a “Teacher-Student” framework, we need to create two separ
 Initially, we create a U-Net as a teacher model. Any CNN model can be used to define the models.
 
     teacher_model = create_unet_like_model()
-    teacher.compile()
-    teacher.fit()
+    
+    objective_function = K.binary_crossentropy
+    metrics_=[loss.binary_crossentropy, loss.binary_dice]
+    
+    teacher_model.compile(loss = objective_function,
+                          optimizer = SGD(lr=initial_learning_rate, momentum=0.9, nesterov=True) if optimizer == "SGD" else Adam(lr=initial_learning_rate),
+                          metrics = metrics_)
+    teacher_model.fit(training_x, training_y)
 
 **Preparing the dataset:**
 
 The data needs to be divided into training and testing datasets, then they should be normalized. 
 
+    def intensityNormalization(I):
+         min = np.min(I, axis=(0, 1, 2))
+         max = np.max(I, axis=(0, 1, 2))
+         I = (I - min) / (max - min)
+         return I
 
 **Create the student model:**
 
     student_model = create_unet_like_model()
-    student.compile()
-    student.fit()
 
 **Define the KD Loss:**
 
