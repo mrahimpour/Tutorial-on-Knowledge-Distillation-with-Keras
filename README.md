@@ -68,7 +68,7 @@ Where KD is defined as:
       d = K.int_shape(y_pred)[-1]
       ld = y_pred[...,:K.cast(d/2, 'int32')]
       rd = y_pred[...,K.cast(d/2, 'int32'):] 
-      kd_loss = ((![CodeCogsEqn](https://user-images.githubusercontent.com/41435220/101928455-e3272b80-3bd5-11eb-8f6d-9c881f0d90c1.gif))*(T*T))*loss.binary_crossentropy(ld, rd)
+      kd_loss = (α *(T*T))*K.binary_crossentropy(ld, rd)
 
       return kd_loss
         
