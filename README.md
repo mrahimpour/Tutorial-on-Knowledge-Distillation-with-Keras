@@ -38,22 +38,22 @@ teacher.compile()
 teacher.fit()
 
 **Preparing the dataset:**
+
 The data needs to be divided into training and testing datasets, then they should be normalized. 
 
 
-**Create the student model**
+**Create the student model:**
 
     student_model = create_unet_like_model()
     student.compile()
     student.fit()
 
-**Define the KD Loss**
+**Define the KD Loss:**
+
 The distillation loss function is a weighted combination of soft dice loss between the prediction of student model ('output_student') and ground truth and the cross-entopy loss between the softened output of student model ('soft_preds') and teacher model. The loss fuunction for the distillation framework is defined as a dictionary as follows:
 
-    loss_function = {
-                    'output_student':soft_dice,
-                    'soft_preds':KD
-                      }
+    loss_function = {'output_student':soft_dice,
+                    'soft_preds':KD}
                 
 Where KD is defined as:                
 
