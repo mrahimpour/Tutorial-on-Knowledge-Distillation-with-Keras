@@ -31,6 +31,9 @@ In order to setup a “Teacher-Student” framework, we need to create two separ
   
 3. Train a student from the scratch as a baseline model for comparison
 
+**Train a teacher model**
+
+
 
 # References:
 [1] Bucilua, C., Caruana, R., Niculescu-Mizil, A.: Model compression. In: Proceedingsof the 12th ACM SIGKDD international conference on Knowledge discovery anddata mining. pp. 535–541 (2006)
