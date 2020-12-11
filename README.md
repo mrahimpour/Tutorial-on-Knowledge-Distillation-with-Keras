@@ -16,7 +16,7 @@ In order to setup a “Teacher-Student” framework, we need to create two separ
 
 1. Train a teacher model
 2. Create a student model and train it by knowledge distillation (KD) loss 
-  2.1. Prepare the data
+----- 2.1. Prepare the data
   
   2.2. Create the student model
   
