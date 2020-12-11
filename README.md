@@ -88,7 +88,7 @@ Where KD is defined as:
 
     concat_out_layer_student_teacher = Concatenate(axis = -1, name = 'soft_outputss')([soft_prob_teacher, soft_prob_student])
 
-    student_teacher_model = Model([student_model.input, teacher_model.input], [student_model.output, concat_last_layer_student_teacher])
+    student_teacher_model = Model(student_model.input, [student_model.output, concat_last_layer_student_teacher])
 
 
 
