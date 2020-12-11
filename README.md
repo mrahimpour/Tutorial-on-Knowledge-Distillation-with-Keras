@@ -11,7 +11,7 @@ Instead of using logit values, Hinton et al. [2] proposed the concept of tempera
 
 Where ![CodeCogsEqn](https://user-images.githubusercontent.com/41435220/101780336-b3edbd00-3af6-11eb-99ac-5a1e4df317b8.gif) is the prediction of student model, ![CodeCogsEqn](https://user-images.githubusercontent.com/41435220/101780503-e8fa0f80-3af6-11eb-8398-4a67f19c4a81.gif) is the label representing the ground truth and H is the cross-entropy function. ![CodeCogsEqn](https://user-images.githubusercontent.com/41435220/101780662-18a91780-3af7-11eb-9c25-adbbde068a3f.gif) and ![CodeCogsEqn](https://user-images.githubusercontent.com/41435220/101926687-cf7ac580-3bd3-11eb-9711-e9a1d8a8e7cd.gif) refer to the logit values produced by teacher and student model respectively while ![CodeCogsEqn](https://user-images.githubusercontent.com/41435220/101926781-eb7e6700-3bd3-11eb-95dd-57ffef2ac984.gif) is the temperature parameter and ![CodeCogsEqn](https://user-images.githubusercontent.com/41435220/101926858-0bae2600-3bd4-11eb-80b6-91ad5f15ea59.gif) is the softmax function and ![CodeCogsEqn](https://user-images.githubusercontent.com/41435220/101928455-e3272b80-3bd5-11eb-8f6d-9c881f0d90c1.gif) is the parameter that balance the effect of hard labels provided by reference ground truth and teacher's soft labels. 
 
-![H0](https://user-images.githubusercontent.com/41435220/101962628-f5708c00-3c0c-11eb-9590-7e6f49dc1fb0.jpg)
+![KD_Basic](https://user-images.githubusercontent.com/41435220/101962857-77f94b80-3c0d-11eb-8c68-bd268b205baa.jpg)
 
 
 # Implementation:
