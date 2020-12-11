@@ -42,51 +42,50 @@ The data needs to be divided into training and testing datasets, then they shoul
 
 
 **Create the student model**
-student_model = create_unet_like_model()
-student.compile()
-student.fit()
+
+    student_model = create_unet_like_model()
+    student.compile()
+    student.fit()
 
 **Define the KD Loss**
 The distillation loss function is a weighted combination of soft dice loss between the prediction of student model ('output_student') and ground truth and the cross-entopy loss between the softened output of student model ('soft_preds') and teacher model. The loss fuunction for the distillation framework is defined as a dictionary as follows:
 
-loss_function = {
+    loss_function = {
                     'output_student':soft_dice,
                     'soft_preds':KD
                       }
                 
-   
 Where KD is defined as:                
-
-
 
     def KD(y_true, y_pred):
          
-         d = K.int_shape(y_pred)[-1]
+      d = K.int_shape(y_pred)[-1]
          
-         ld = y_pred[...,:K.cast(d/2, 'int32')]
+      ld = y_pred[...,:K.cast(d/2, 'int32')]
         
-        rd = y_pred[...,K.cast(d/2, 'int32'):]
+      rd = y_pred[...,K.cast(d/2, 'int32'):]
         
-        kd_loss = ((0.75)*(5*5))*loss.binary_crossentropy(ld, rd)
+      kd_loss = ((0.75)*(5*5))*loss.binary_crossentropy(ld, rd)
 
-        return kd_loss
+      return kd_loss
         
 **Define the student-teacher model**
-temperature = 5
 
-out_layer_student = student_model.get_layer('activation_out_student').output 
-hard_prob_student = Activation('softmax')(out_layer_student)
+    temperature = 5
+
+    out_layer_student = student_model.get_layer('activation_out_student').output 
+    hard_prob_student = Activation('softmax')(out_layer_student)
    
-out_layer_student_soft  = Lambda(lambda x: x/temperature)(out_layer_student)
-soft_prob_student = Activation('softmax')(out_layer_student_soft)
+    out_layer_student_soft  = Lambda(lambda x: x/temperature)(out_layer_student)
+    soft_prob_student = Activation('softmax')(out_layer_student_soft)
 
-out_layer_teacher = teacher_model.get_layer('activation_out_teacher').output #activation_out_T2
-out_layer_teacher_soft  = Lambda(lambda x: x/temperature)(out_layer_teacher)
-soft_prob_teacher = Activation('softmax')(out_layer_teacher_soft)
+    out_layer_teacher = teacher_model.get_layer('activation_out_teacher').output #activation_out_T2
+    out_layer_teacher_soft  = Lambda(lambda x: x/temperature)(out_layer_teacher)
+    soft_prob_teacher = Activation('softmax')(out_layer_teacher_soft)
 
-concat_last_layer_student_teacher = Concatenate(axis = -1, name = 'soft_preds')([soft_prob_teacher, soft_prob_student])
+    concat_last_layer_student_teacher = Concatenate(axis = -1, name = 'soft_preds')([soft_prob_teacher, soft_prob_student])
 
-joint_model = Model([student_model.input, teacher_model.input], [student_model.output, concat_last_layer_student_teacher])
+    student_teacher_model = Model([student_model.input, teacher_model.input], [student_model.output, concat_last_layer_student_teacher])
 
 
 
