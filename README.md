@@ -14,9 +14,10 @@ Where ![CodeCogsEqn](https://user-images.githubusercontent.com/41435220/10178033
 # Implementation:
 In order to setup a “Teacher-Student” framework, we need to create two separate models for teacher and student models. A CNN with any arbitrary architecture can be used as the teacher and student model. It is contrary to the transfer learning approach where both models must have the same architecture to be able to copy the weights of the pre-trained model to the new model. The following steps are required to implement the knowledge distillation:
 
-1. Item 1. Train a teacher model
-1. Item 2. Create a student model and train it by knowledge distillation (KD) loss 
-  1. Item 2.1. Prepare the data
+1. Train a teacher model
+2. Create a student model and train it by knowledge distillation (KD) loss 
+
+   2.1. Prepare the data
   
   2.2. Create the student model
   
