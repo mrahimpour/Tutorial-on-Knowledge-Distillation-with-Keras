@@ -76,17 +76,17 @@ Where KD is defined as:
 
     temperature = 5
 
-    out_layer_student = student_model.get_layer('activation_out_student').output 
-    hard_prob_student = Activation('softmax')(out_layer_student)
+    logit_student = student_model.get_layer('activation_out_student').output 
+    hard_out_student = Activation('softmax')(logit_student)
    
-    out_layer_student_soft  = Lambda(lambda x: x/temperature)(out_layer_student)
-    soft_prob_student = Activation('softmax')(out_layer_student_soft)
+    soft_out_student  = Lambda(lambda x: x/temperature)(logit_student)
+    soft_prob_student = Activation('softmax')(soft_out_student)
 
-    out_layer_teacher = teacher_model.get_layer('activation_out_teacher').output #activation_out_T2
-    out_layer_teacher_soft  = Lambda(lambda x: x/temperature)(out_layer_teacher)
-    soft_prob_teacher = Activation('softmax')(out_layer_teacher_soft)
+    logit_teacher = teacher_model.get_layer('activation_out_teacher').output 
+    soft_out_teacher = Lambda(lambda x: x/temperature)(logit_teacher)
+    soft_prob_teacher = Activation('softmax')(soft_out_teacher)
 
-    concat_last_layer_student_teacher = Concatenate(axis = -1, name = 'soft_preds')([soft_prob_teacher, soft_prob_student])
+    concat_out_layer_student_teacher = Concatenate(axis = -1, name = 'soft_outputss')([soft_prob_teacher, soft_prob_student])
 
     student_teacher_model = Model([student_model.input, teacher_model.input], [student_model.output, concat_last_layer_student_teacher])
 
