@@ -96,6 +96,13 @@ Where KD is defined as:
     concat_out_layer_student_teacher = Concatenate(axis = -1, name = 'soft_outputss')([soft_prob_teacher, soft_prob_student])
 
     student_teacher_model = Model(student_model.input, [student_model.output, concat_last_layer_student_teacher])
+    
+    metrics_=[loss.binary_crossentropy, loss.binary_dice]
+    metrics_dict = {'output_student': metrics_,'soft_preds': [])}
+
+    student_teacher_model.compile(loss = loss_function,
+                                  optimizer = SGD(lr=initial_learning_rate, momentum=0.9, nesterov=True) if optimizer == "SGD" else Adam(lr=initial_learning_rate),
+                                  metrics = metrics_dict)
 
 
 
