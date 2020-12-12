@@ -79,7 +79,7 @@ Where KD is defined as:
 
       return kd_loss
         
-**Define the student-teacher model**
+**Define, compile and train the student-teacher model**
 
     temperature = 5
 
@@ -103,7 +103,27 @@ Where KD is defined as:
     student_teacher_model.compile(loss = loss_function,
                                   optimizer = SGD(lr=initial_learning_rate, momentum=0.9, nesterov=True) if optimizer == "SGD" else Adam(lr=initial_learning_rate),
                                   metrics = metrics_dict)
+                                  
+                                  
+                                  
+                                  
+**Evaluate the student model on the test dataset**
+            
+    student_model.evaluate(x_test, y_test) #Enriched student model
+    
+**Train a student from the scratch as a baseline model for comparison**
 
+    student_model = create_unet_like_model()
+    objective_function = K.binary_crossentropy
+    metrics_=[loss.binary_crossentropy, loss.binary_dice]
+    
+    student_model.compile(loss = objective_function,
+                          optimizer = SGD(lr=initial_learning_rate, momentum=0.9, nesterov=True) if optimizer == "SGD" else Adam(lr=initial_learning_rate),
+                          metrics = metrics_)
+    student_model.fit(training_x, training_y)
+    
+    student_model.evaluate(x_test, y_test) #student model trained from scratch
+    
 
 
 # Acknowledgements
