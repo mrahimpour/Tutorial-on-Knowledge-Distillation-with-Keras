@@ -48,7 +48,7 @@ Initially, we create a U-Net as a teacher model. Any CNN model can be used to de
 
 **Preparing the dataset:**
 
-The data needs to be divided into training and testing datasets, then they should be normalized. 
+The data needs to be divided into training and testing datasets, then they should be normalized, our data are 3D images. 
 
     def intensityNormalization(I):
          min = np.min(I, axis=(0, 1, 2))
