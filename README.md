@@ -36,7 +36,15 @@ In order to setup a “Teacher-Student” framework, we need to create two separ
 
 Initially, we create a U-Net as a teacher model. Any CNN model can be used to define the models.
 
-    teacher_model = create_unet_like_model()
+    teacher_model = create_unet_like_model(number_input_features,
+                                           subsample_factors_per_pathway,
+                                           kernel_sizes_per_pathway,
+                                           number_features_per_pathway,
+                                           output_size,
+                                           padding,
+                                           upsampling,
+                                           l1_regularization,
+                                           l2_regularization)
     
     objective_function = K.binary_crossentropy
     metrics_=[loss.binary_crossentropy, loss.binary_dice]
@@ -58,7 +66,15 @@ The data needs to be divided into training and testing datasets, then they shoul
 
 **Create the student model:**
 
-    student_model = create_unet_like_model()
+    student_model = create_unet_like_model(number_input_features,
+                                           subsample_factors_per_pathway,
+                                           kernel_sizes_per_pathway,
+                                           number_features_per_pathway,
+                                           output_size,
+                                           padding,
+                                           upsampling,
+                                           l1_regularization,
+                                           l2_regularization)
 
 **Define the KD Loss:**
 
