@@ -129,7 +129,15 @@ Where KD is defined as:
     
 **Train a student from the scratch as a baseline model for comparison**
 
-    student_model = create_unet_like_model()
+    student_model = create_unet_like_model(number_input_features,
+                                           subsample_factors_per_pathway,
+                                           kernel_sizes_per_pathway,
+                                           number_features_per_pathway,
+                                           output_size,
+                                           padding,
+                                           upsampling,
+                                           l1_regularization,
+                                           l2_regularization)
     objective_function = K.binary_crossentropy
     metrics_=[loss.binary_crossentropy, loss.binary_dice]
     
