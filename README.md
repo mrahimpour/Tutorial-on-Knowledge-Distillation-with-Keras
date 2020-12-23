@@ -34,7 +34,8 @@ In order to setup a “Teacher-Student” framework, we need to create two separ
 
 **Train a teacher model:**
 
-Initially, we create a U-Net as a teacher model. Any CNN model can be used to define the models.
+Initially, we create a U-Net as a teacher model. Any CNN model can be used to define the models. To learn more about the implemetation of U-Net model, check out the following link: 
+https://github.com/JeroenBertels/deepvoxnet2/tree/main/deepvoxnet2/keras/models
 
     teacher_model = create_unet_like_model(number_input_features,
                                            subsample_factors_per_pathway,
